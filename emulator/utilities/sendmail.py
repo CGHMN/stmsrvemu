@@ -24,7 +24,8 @@ def send_email_via_smtp(msg):
             server = smtplib.SMTP_SSL(smtp_server, smtp_port)
         else:
             server = smtplib.SMTP(smtp_server, smtp_port)
-            server.starttls()  # Use TLS encryption
+            if smtp_security.lower() == "tls":
+                server.starttls()  # Use TLS encryption
 
         # Login to the SMTP server (if authentication is required)
         if smtp_username and smtp_password:
