@@ -241,27 +241,14 @@ if config["enable_steam3_servers"].lower() == "true":
     # extra_args for CM servers that need master_server reference for restarts
     cm_extra_args = {'master_server': master_server}
 
-    if config["run_all_servers"].lower() == "true":
-        cmtcp27014_server = CMServerTCP_27014(27014, config, master_server)
-        start_server_thread(cmtcp27014_server, 'CMTCP27014', 'Valve Connection Manager (CM) 1 TCP Server', cm_extra_args)
-        cmudp27014_server = CMServerUDP_27014(27014, config, master_server)
-        start_server_thread(cmudp27014_server, 'CMUDP27014', 'Valve Connection Manager (CM) 1 UDP Server', cm_extra_args)
-        cmtcp27017_server = CMServerTCP_27017(27017, config, master_server)
-        start_server_thread(cmtcp27017_server, 'CMTCP27017', 'Valve Connection Manager (CM) 2 TCP Server', cm_extra_args)
-        cmudp27017_server = CMServerUDP_27017(27017, config, master_server)
-        start_server_thread(cmudp27017_server, 'CMUDP27017', 'Valve Connection Manager (CM) 2 UDP Server', cm_extra_args)
-    else:
-        if globalvars.steamui_ver < 479:
-            # 27014 only needs to be active for steamui versions below 479
-            cmtcp27014_server = CMServerTCP_27014(27014, config, master_server)
-            start_server_thread(cmtcp27014_server, 'CMTCP27014', 'Valve Connection Manager (CM) 1 TCP Server', cm_extra_args)
-            cmudp27014_server = CMServerUDP_27014(27014, config, master_server)
-            start_server_thread(cmudp27014_server, 'CMUDP27014', 'Valve Connection Manager (CM) 1 UDP Server', cm_extra_args)
-        else:
-            cmtcp27017_server = CMServerTCP_27017(27017, config, master_server)
-            start_server_thread(cmtcp27017_server, 'CMTCP27017', 'Valve Connection Manager (CM) 2 TCP Server', cm_extra_args)
-            cmudp27017_server = CMServerUDP_27017(27017, config, master_server)
-            start_server_thread(cmudp27017_server, 'CMUDP27017', 'Valve Connection Manager (CM) 2 UDP Server', cm_extra_args)
+    cmtcp27014_server = CMServerTCP_27014(27014, config, master_server)
+    start_server_thread(cmtcp27014_server, 'CMTCP27014', 'Valve Connection Manager (CM) 1 TCP Server', cm_extra_args)
+    cmudp27014_server = CMServerUDP_27014(27014, config, master_server)
+    start_server_thread(cmudp27014_server, 'CMUDP27014', 'Valve Connection Manager (CM) 1 UDP Server', cm_extra_args)
+    cmtcp27017_server = CMServerTCP_27017(27017, config, master_server)
+    start_server_thread(cmtcp27017_server, 'CMTCP27017', 'Valve Connection Manager (CM) 2 TCP Server', cm_extra_args)
+    cmudp27017_server = CMServerUDP_27017(27017, config, master_server)
+    start_server_thread(cmudp27017_server, 'CMUDP27017', 'Valve Connection Manager (CM) 2 UDP Server', cm_extra_args)
 
 if config["run_all_servers"].lower() == "true":
     # TODO finish global tracker server
