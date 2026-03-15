@@ -950,12 +950,12 @@ class cm_dbdriver:
                 if friend.relationship in [2, 4]:
                     friend.relationship = 3
                     self.session.add(friend)
-                    auto_accepted_friends.append(friend.accountID)
+                    auto_accepted_friends.append(friend.friendsaccountID)
 
                     # Also update the inverse relationship (the other user's side)
                     inverse_entry = self.session.query(FriendsList).filter(
-                        FriendsList.friendRegistryID == friend.accountID,
-                        FriendsList.accountID == steamid
+                        FriendsList.friendRegistryID == friend.friendsaccountID,
+                        FriendsList.friendsaccountID == steamid
                     ).first()
                     if inverse_entry:
                         inverse_entry.relationship = 3
